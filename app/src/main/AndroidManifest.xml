@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.youthclub_events">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".settingsActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/settings"
+            >
+        </activity>
+        <activity android:name=".eventListActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/eventlist"
+            >
+        </activity>
+        <activity android:name=".startEventActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/start_event"
+            >
+        </activity>
+        <activity android:name=".createEventActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/create_event"
+            >
+        </activity>
+
+    </application>
+
+</manifest>
