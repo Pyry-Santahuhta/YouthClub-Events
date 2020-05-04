@@ -8,6 +8,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import java.util.concurrent.Future;
 
 
 public class MainActivity extends AppCompatActivity {
+    Context context;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
@@ -34,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
         }else{
             //Toast.makeText(MainActivity.this, firebaseAuth.getCurrentUser().toString(), Toast.LENGTH_SHORT).show();
         }
-
         super.onCreate(savedInstanceState);
+        this.context = getApplicationContext();
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);

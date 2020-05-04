@@ -12,34 +12,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
-import org.xmlpull.v1.XmlSerializer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+public class editEventActivity extends AppCompatActivity {
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-
-public class createEventActivity extends AppCompatActivity {
-
-    Button createEventButton;
+    Button editEventButton;
     EditText eventNameID, eventLocationID, dateAndTimeID, eventDescriptionID;
     RadioGroup ageGroupID;
     RadioButton ageGroupButton;
@@ -48,16 +24,20 @@ public class createEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = createEventActivity.this;
-        setContentView(R.layout.activity_create_event);
-        createEventButton = findViewById(R.id.createbutton);
+        context = editEventActivity.this;
+        setContentView(R.layout.activity_edit_event);
+        editEventButton = findViewById(R.id.editButton);
         eventNameID = findViewById(R.id.eventNameText);
         eventLocationID = findViewById(R.id.eventLocationText);
         dateAndTimeID = findViewById(R.id.eventDateText);
         ageGroupID = findViewById(R.id.radioGroup);
         eventDescriptionID = findViewById(R.id.eventDescriptionText);
-
-        createEventButton.setOnClickListener(new View.OnClickListener() {
+        eventNameID.setText();
+        eventLocationID.setText();
+        dateAndTimeID.setText();
+        ageGroupID;
+        eventDescriptionID.setText();
+        editEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 eventName = eventNameID.getText().toString();
@@ -66,10 +46,10 @@ public class createEventActivity extends AppCompatActivity {
                 int checkedRadioID = ageGroupID.getCheckedRadioButtonId();
                 eventDescription = eventDescriptionID.getText().toString();
                 if (checkedRadioID == -1){
-                    Toast.makeText(createEventActivity.this, "Please select an age group", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(editEventActivity.this, "Please select an age group", Toast.LENGTH_SHORT).show();
                     ageGroupID.requestFocus();
                 }else if(eventName.isEmpty() && eventLocation.isEmpty() && eventDateAndTime.isEmpty() && eventDescription.isEmpty()) {
-                    Toast.makeText(createEventActivity.this, "Please enter event info!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(editEventActivity.this, "Please enter event info!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     ageGroupButton = findViewById(checkedRadioID);
@@ -91,9 +71,8 @@ public class createEventActivity extends AppCompatActivity {
                 }
                 else{
                    event Event = new event(eventName, eventLocation, ageGroup, eventDateAndTime, eventDescription);
-                   readAndWriteXML.saveToXML(Event, context);
-                   readAndWriteXML.readXML(context);
-
+                   readAndWriteXML.readXML(Event);
+                   readXML();
                 }
             }
         });

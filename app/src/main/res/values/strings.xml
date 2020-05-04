@@ -30,5 +30,6 @@
     <string name="date_and_time">Date and time</string>
     <string name="write_a_short_description_for_the_event">Write a short description for the event</string>
     <string name="description">Description</string>
+    <string name="Finish">Finish</string>
 
 </resources>

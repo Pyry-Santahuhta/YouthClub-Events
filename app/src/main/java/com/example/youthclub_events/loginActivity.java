@@ -100,7 +100,7 @@ public class loginActivity extends AppCompatActivity {
         }
 
 
-    }
+}
 
     public void loadActivity(String s){
         if(s.equals("REGISTER")){
