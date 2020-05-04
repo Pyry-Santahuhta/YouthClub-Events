@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.util.concurrent.Future;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,16 +23,14 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
     Button listEventsButton, startEventButton, createEventButton;
-    private FirebaseAuth.AuthStateListener authStateListener;
     FirebaseAuth firebaseAuth;
-    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         firebaseAuth = firebaseAuth.getInstance();
-        if (firebaseAuth == null){
+        if (firebaseAuth.getCurrentUser() == null){
             loadActivity("LOGIN");
         }else{
-            //Toast.makeText(MainActivity.this, firebaseAuth.getCurrentUser().toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, firebaseAuth.getCurrentUser().toString(), Toast.LENGTH_SHORT).show();
         }
         super.onCreate(savedInstanceState);
         this.context = getApplicationContext();
@@ -65,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(v == findViewById(R.id.listEvents)){
                     loadActivity("EVENTLIST");
                 }else if(v == findViewById(R.id.startEvent)){
@@ -82,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
         listEventsButton.setOnClickListener(clickListener);
         startEventButton.setOnClickListener(clickListener);
         createEventButton.setOnClickListener(clickListener);
-
-
 
     }
 

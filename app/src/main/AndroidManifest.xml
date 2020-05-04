@@ -48,6 +48,11 @@
             android:label="@string/register"
             >
         </activity>
+        <activity android:name=".editEventActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/edit"
+            >
+        </activity>
 
     </application>
 

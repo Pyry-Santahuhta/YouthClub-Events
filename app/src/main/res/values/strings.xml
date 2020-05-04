@@ -4,9 +4,9 @@
     <string name="profile">Profile</string>
     <string name="Open" />
     <string name="Close" />
-    <string name="eventlist">Eventlist</string>
-    <string name="start_event">Start event</string>
-    <string name="create_event">Create event</string>
+    <string name="eventlist">List all upcoming events</string>
+    <string name="start_event">Start an existing event</string>
+    <string name="create_event">Create a new event</string>
     <string name="username">Username</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
@@ -31,5 +31,6 @@
     <string name="write_a_short_description_for_the_event">Write a short description for the event</string>
     <string name="description">Description</string>
     <string name="Finish">Finish</string>
+    <string name="edit">Edit event</string>
 
 </resources>

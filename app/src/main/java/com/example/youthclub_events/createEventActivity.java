@@ -45,6 +45,7 @@ public class createEventActivity extends AppCompatActivity {
     RadioButton ageGroupButton;
     String eventName, eventLocation, eventDateAndTime, ageGroup, eventDescription;
     Context context;
+    int ageGroupNum;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +75,7 @@ public class createEventActivity extends AppCompatActivity {
                 else {
                     ageGroupButton = findViewById(checkedRadioID);
                     ageGroup = ageGroupButton.getText().toString();
+                    ageGroupNum = checkedRadioID;
                 }
 
                 if(eventName.isEmpty()){
@@ -90,9 +92,11 @@ public class createEventActivity extends AppCompatActivity {
                     eventDescriptionID.requestFocus();
                 }
                 else{
-                   event Event = new event(eventName, eventLocation, ageGroup, eventDateAndTime, eventDescription);
-                   readAndWriteXML.saveToXML(Event, context);
-                   readAndWriteXML.readXML(context);
+                    event Event = new event(eventName, eventLocation, ageGroup, ageGroupNum, eventDateAndTime, eventDescription);
+                    readAndWriteXML.saveToXML(Event, context);
+                    Intent intent = new Intent(createEventActivity.this, MainActivity.class);
+                    startActivity(intent);
+
                 }
             }
         });

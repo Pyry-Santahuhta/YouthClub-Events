@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 
 public class editEventActivity extends AppCompatActivity {
 
@@ -20,11 +22,19 @@ public class editEventActivity extends AppCompatActivity {
     RadioGroup ageGroupID;
     RadioButton ageGroupButton;
     String eventName, eventLocation, eventDateAndTime, ageGroup, eventDescription;
+    int ageGroupNum;
     Context context;
+    ArrayList<event> eventsList;
+    int selectedPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = editEventActivity.this;
+        this.context = getApplicationContext();
+        eventsList = new ArrayList<>();
+        selectedPosition = getIntent().getIntExtra("selectedPosition", 0);
+        eventsList = readAndWriteXML.readXML(context);
+
         setContentView(R.layout.activity_edit_event);
         editEventButton = findViewById(R.id.editButton);
         eventNameID = findViewById(R.id.eventNameText);
@@ -32,13 +42,18 @@ public class editEventActivity extends AppCompatActivity {
         dateAndTimeID = findViewById(R.id.eventDateText);
         ageGroupID = findViewById(R.id.radioGroup);
         eventDescriptionID = findViewById(R.id.eventDescriptionText);
-     /*   eventNameID.setText();
-        eventLocationID.setText();
-        dateAndTimeID.setText();
-        ageGroupID;
-        eventDescriptionID.setText();
 
-      */
+
+        event Event = eventsList.get(selectedPosition);
+
+
+
+        eventNameID.setText(Event.name);
+        eventLocationID.setText(Event.location);
+        dateAndTimeID.setText(Event.dateAndTime);
+        eventDescriptionID.setText(Event.description);
+        ageGroupID.check(Event.ageRangeID);
+
         editEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +71,7 @@ public class editEventActivity extends AppCompatActivity {
                 else {
                     ageGroupButton = findViewById(checkedRadioID);
                     ageGroup = ageGroupButton.getText().toString();
+                    ageGroupNum = checkedRadioID;
                 }
 
                 if(eventName.isEmpty()){
@@ -72,7 +88,7 @@ public class editEventActivity extends AppCompatActivity {
                     eventDescriptionID.requestFocus();
                 }
                 else{
-                   event Event = new event(eventName, eventLocation, ageGroup, eventDateAndTime, eventDescription);
+                   event Event = new event(eventName, eventLocation, ageGroup, ageGroupNum, eventDateAndTime, eventDescription);
                    readAndWriteXML.saveToXML(Event, context);
 
                 }

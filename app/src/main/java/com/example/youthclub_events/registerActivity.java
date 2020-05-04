@@ -87,21 +87,6 @@ public class registerActivity extends AppCompatActivity {
 
     }
 
-
-
-    private void createUser(String username, String password, int accountType){
-        account account = new account(username, password, accountType);
-        if((username.equals("admin")) && (password.equals("ADMIN"))){
-
-        }
-        Intent intent = new Intent();
-       // account here intent.putExtra( )
-        setResult(RESULT_OK, intent);
-        finish();
-
-    }
-
-
     @Override
     public void onBackPressed(){
         Intent intent = new Intent();
