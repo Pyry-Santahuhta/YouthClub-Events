@@ -10,8 +10,25 @@
     <string name="username">Username</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
-    <string name="registerinfo">No account? register here:</string>
-    <string name="register">register</string>
+    <string name="registerinfo">No account? Register here:</string>
+    <string name="register">Register</string>
     <string name="account_type">Account type</string>
+    <string name="log_out">Log out</string>
+    <string name="email">E-mail</string>
+    <string name="creating_a_new_event">Creating a new event</string>
+    <string name="event_name">Event name</string>
+    <string name="schedule_a_date_for_the_event">Schedule a date for the event (DD/MM/YY - hh:mm)</string>
+    <string name="give_a_name_for_the_event">Give a name for the event</string>
+    <string name="select_an_age_group">Select an age group</string>
+    <string name="give_the_address_for_the_event">Give the address for the event</string>
+    <string name="event_location">Event location</string>
+    <string name="ages_1">9-12</string>
+    <string name="ages_2">12-14</string>
+    <string name="ages_3">14-16</string>
+    <string name="ages_4">All</string>
+    <string name="create">Create</string>
+    <string name="date_and_time">Date and time</string>
+    <string name="write_a_short_description_for_the_event">Write a short description for the event</string>
+    <string name="description">Description</string>
 
 </resources>

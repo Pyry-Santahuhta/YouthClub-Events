@@ -35,6 +35,19 @@
             android:label="@string/create_event"
             >
         </activity>
+        <activity android:name=".loginActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/login">
+                <intent-filter>
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".registerActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/register"
+            >
+        </activity>
 
     </application>
 

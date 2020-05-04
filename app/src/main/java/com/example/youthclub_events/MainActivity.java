@@ -5,12 +5,17 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.concurrent.Future;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,9 +23,18 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
     Button listEventsButton, startEventButton, createEventButton;
-
+    private FirebaseAuth.AuthStateListener authStateListener;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        firebaseAuth = firebaseAuth.getInstance();
+        if (firebaseAuth == null){
+            loadActivity("LOGIN");
+        }else{
+            //Toast.makeText(MainActivity.this, firebaseAuth.getCurrentUser().toString(), Toast.LENGTH_SHORT).show();
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -38,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if (id == R.id.profile){
                     loadActivity("PROFILE");
+                }else if (id == R.id.log_out){
+                    firebaseAuth.signOut();
+                    loadActivity("LOGIN");
                 }
                 return true;
             }
@@ -87,16 +104,18 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, createEventActivity.class);
             startActivityForResult(intent, 1);
         }
+        else if(s.equals("LOGIN")){
+            Intent intent = new Intent(MainActivity.this, loginActivity.class);
+            startActivityForResult(intent, 1);
+        }
     }
 
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if(drawerToggle.onOptionsItemSelected(item))
             return true;
-
         return super.onOptionsItemSelected(item);
     }
 }

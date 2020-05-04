@@ -7,17 +7,18 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
         android:ems="10"
-        android:hint="@string/username"
+        android:hint="@string/email"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintVertical_bias="0.285" />
 
     <EditText
         android:id="@+id/password"
@@ -30,7 +31,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
         android:id="@+id/login"
@@ -47,7 +48,7 @@
         android:id="@+id/registerInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="108dp"
         android:text="@string/registerinfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.405"
@@ -58,7 +59,7 @@
         android:id="@+id/registerButton"
         android:layout_width="77dp"
         android:layout_height="35dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="100dp"
         android:text="@string/register"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
