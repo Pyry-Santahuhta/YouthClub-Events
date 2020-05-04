@@ -48,7 +48,7 @@ public class createEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = createEventActivity.this;
+        context = getApplicationContext();
         setContentView(R.layout.activity_create_event);
         createEventButton = findViewById(R.id.createbutton);
         eventNameID = findViewById(R.id.eventNameText);
@@ -93,14 +93,11 @@ public class createEventActivity extends AppCompatActivity {
                    event Event = new event(eventName, eventLocation, ageGroup, eventDateAndTime, eventDescription);
                    readAndWriteXML.saveToXML(Event, context);
                    readAndWriteXML.readXML(context);
-
                 }
             }
         });
 
     }
-
-
 
 
 

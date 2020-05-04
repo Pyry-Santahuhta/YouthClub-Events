@@ -32,11 +32,13 @@ public class editEventActivity extends AppCompatActivity {
         dateAndTimeID = findViewById(R.id.eventDateText);
         ageGroupID = findViewById(R.id.radioGroup);
         eventDescriptionID = findViewById(R.id.eventDescriptionText);
-        eventNameID.setText();
+     /*   eventNameID.setText();
         eventLocationID.setText();
         dateAndTimeID.setText();
         ageGroupID;
         eventDescriptionID.setText();
+
+      */
         editEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,8 +73,8 @@ public class editEventActivity extends AppCompatActivity {
                 }
                 else{
                    event Event = new event(eventName, eventLocation, ageGroup, eventDateAndTime, eventDescription);
-                   readAndWriteXML.readXML(Event);
-                   readXML();
+                   readAndWriteXML.saveToXML(Event, context);
+
                 }
             }
         });

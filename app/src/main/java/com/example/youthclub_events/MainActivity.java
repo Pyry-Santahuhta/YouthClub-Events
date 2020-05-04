@@ -73,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 }else if(v == findViewById(R.id.createEvent)){
                     loadActivity("CREATEEVENT");
                 }
-
-
             }
         };
 
@@ -105,8 +103,7 @@ public class MainActivity extends AppCompatActivity {
         }else if(s.equals("CREATEEVENT")){
             Intent intent = new Intent(MainActivity.this, createEventActivity.class);
             startActivityForResult(intent, 1);
-        }
-        else if(s.equals("LOGIN")){
+        }else if(s.equals("LOGIN")){
             Intent intent = new Intent(MainActivity.this, loginActivity.class);
             startActivityForResult(intent, 1);
         }
