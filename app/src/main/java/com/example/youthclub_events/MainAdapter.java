@@ -26,7 +26,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             nameView = itemView.findViewById(R.id.eventNameTv);
             locationView = itemView.findViewById(R.id.eventLocationTv);
             datetimeView = itemView.findViewById(R.id.eventDatetimeTv);
-            editButton = itemView.findViewById(R.id.editButtonID);
+            editButton = itemView.findViewById(R.id.viewComments);
         }
     }
     public MainAdapter(ArrayList<event> eventsList, Context context) {

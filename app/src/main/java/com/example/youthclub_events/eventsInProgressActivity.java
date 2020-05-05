@@ -22,12 +22,9 @@ public class eventsInProgressActivity extends AppCompatActivity {
         eventsInProgressRecyclerView = findViewById(R.id.recyclerView);
         this.context = getApplicationContext();
         eventInProgressList = readAndWriteXML.readInProgressEventXML(context);
-        eventInProgressList = readAndWriteXML.readXML(context);
         eventsInProgressRecyclerView.setHasFixedSize(true);
         eventsInProgressRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerAdapter = new SecondaryAdapter(eventInProgressList, context);
         eventsInProgressRecyclerView.setAdapter(recyclerAdapter);
-
-
     }
 }

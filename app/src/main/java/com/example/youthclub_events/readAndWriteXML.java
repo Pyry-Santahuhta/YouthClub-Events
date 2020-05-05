@@ -150,15 +150,14 @@ public class readAndWriteXML {
             description.appendChild(document.createTextNode(EventInProgress.description));
             newEvent.appendChild(description);
 
-            for (int i = 0; i < EventInProgress.feedBack.size(); i++) {
-                Element feedback = document.createElement("feedback" + i);
-                feedback.appendChild(document.createTextNode(EventInProgress.feedBack.get(i)));
-                newEvent.appendChild(feedback);
-            }
 
             Element participants = document.createElement("participants");
             participants.appendChild(document.createTextNode(String.valueOf(EventInProgress.attendeeCount)));
             newEvent.appendChild(participants);
+
+            Element ongoing = document.createElement("ongoing");
+            ongoing.appendChild(document.createTextNode(String.valueOf(EventInProgress.ongoing)));
+            newEvent.appendChild(ongoing);
 
             root.appendChild(newEvent);
 
@@ -288,31 +287,21 @@ public class readAndWriteXML {
     public static ArrayList readInProgressEventXML(Context context){
         int n = 0;
         ArrayList<eventInProgress> eventsInProgressList = new ArrayList<>();
-        ArrayList<String> feedbacklist = new ArrayList<>();
+
         try{
             InputStream inputStream = context.openFileInput("eventsInProgressdata.xml");
             DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             Document XMLDoc = documentBuilder.parse(inputStream);
-            NodeList nodeList = XMLDoc.getElementsByTagName("event");
+            NodeList nodeList = XMLDoc.getElementsByTagName("eventInProgress");
             for (int i = 0; i < nodeList.getLength(); i++){
                 String name = XMLDoc.getElementsByTagName("name").item(i).getTextContent();
                 String location = XMLDoc.getElementsByTagName("location").item(i).getTextContent();
                 String ageGroup = XMLDoc.getElementsByTagName("agegroup").item(i).getTextContent();
                 String Datetime = XMLDoc.getElementsByTagName("datetime").item(i).getTextContent();
                 String description = XMLDoc.getElementsByTagName("description").item(i).getTextContent();
-                while (true){
-                    if (XMLDoc.getElementsByTagName("feedback"+n) == null){
-                        break;
-                    }
-                    String feedback = XMLDoc.getElementsByTagName("feedback"+n).item(i).getTextContent();
-                    n++;
-                    i++;
-                    feedbacklist.add(feedback);
-                }
-                int participants =Integer.parseInt(XMLDoc.getElementsByTagName("participants").item(i).getTextContent());
-
-
-                eventInProgress EventInProgress = new eventInProgress(name, location, ageGroup, Datetime, description, feedbacklist, participants);
+                int participants = Integer.parseInt(XMLDoc.getElementsByTagName("participants").item(i).getTextContent());
+                boolean Boolean = java.lang.Boolean.parseBoolean(XMLDoc.getElementsByTagName("ongoing").item(i).getTextContent());
+                eventInProgress EventInProgress = new eventInProgress(name, location, ageGroup, Datetime, description, participants, Boolean);
                 eventsInProgressList.add(EventInProgress);
             }
         } catch (IOException e) {
@@ -323,6 +312,216 @@ public class readAndWriteXML {
             e.printStackTrace();
         }
         return eventsInProgressList;
+    }
+
+    public static void editOngoingXML(Context context, boolean onGoing, int selectedPosition) {
+        File file = context.getFileStreamPath("eventsInProgressdata.xml");
+        if (!file.exists()) {
+            try {
+                XmlSerializer serializer = Xml.newSerializer();
+                StringWriter writer = new StringWriter();
+                serializer.setOutput(writer);
+                FileOutputStream fileOutputStream = context.openFileOutput("eventsInProgressdata.xml", Context.MODE_APPEND);
+                serializer.setOutput(writer);
+                serializer.startDocument("UTF-8", true);
+                serializer.startTag(null, "eventsInProgress");
+                serializer.endTag(null, "eventsInProgress");
+                serializer.endDocument();
+                serializer.flush();
+                fileOutputStream.write(writer.toString().getBytes());
+                fileOutputStream.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(context.openFileInput("eventsInProgressdata.xml"));
+
+            NodeList nodeList = document.getElementsByTagName("eventInProgress");
+            Element element = null;
+
+            element = (Element) nodeList.item(selectedPosition);
+            Node ongoing = element.getElementsByTagName("ongoing").item(0).getFirstChild();
+            ongoing.setNodeValue(String.valueOf(onGoing));
+
+            DOMSource domSource = new DOMSource(document);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            StreamResult result = new StreamResult(file.getPath());
+            transformer.transform(domSource, result);
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    public static void addParticipantInprogressXML(Context context, int selectedPosition) {
+        File file = context.getFileStreamPath("eventsInProgressdata.xml");
+        if (!file.exists()) {
+            try {
+                XmlSerializer serializer = Xml.newSerializer();
+                StringWriter writer = new StringWriter();
+                serializer.setOutput(writer);
+                FileOutputStream fileOutputStream = context.openFileOutput("eventsInProgressdata.xml", Context.MODE_APPEND);
+                serializer.setOutput(writer);
+                serializer.startDocument("UTF-8", true);
+                serializer.startTag(null, "eventsInProgress");
+                serializer.endTag(null, "eventsInProgress");
+                serializer.endDocument();
+                serializer.flush();
+                fileOutputStream.write(writer.toString().getBytes());
+                fileOutputStream.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(context.openFileInput("eventsInProgressdata.xml"));
+
+            NodeList nodeList = document.getElementsByTagName("eventInProgress");
+            Element element = null;
+
+            element = (Element) nodeList.item(selectedPosition);
+            Node participants = element.getElementsByTagName("participants").item(0).getFirstChild();
+
+            participants.setNodeValue(String.valueOf(Integer.parseInt(participants.getNodeValue())+1));
+
+            DOMSource domSource = new DOMSource(document);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            StreamResult result = new StreamResult(file.getPath());
+            transformer.transform(domSource, result);
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void writeFeedbackXML(Context context, feedback Feedback) {
+        File file = context.getFileStreamPath("eventsFeedback.xml");
+        if (!file.exists()) {
+            try {
+                XmlSerializer serializer = Xml.newSerializer();
+                StringWriter writer = new StringWriter();
+                serializer.setOutput(writer);
+                FileOutputStream fileOutputStream = context.openFileOutput("eventsFeedback.xml", Context.MODE_APPEND);
+                serializer.setOutput(writer);
+                serializer.startDocument("UTF-8", true);
+                serializer.startTag(null, "eventsfeedback");
+                serializer.endTag(null, "eventsfeedback");
+                serializer.endDocument();
+                serializer.flush();
+                fileOutputStream.write(writer.toString().getBytes());
+                fileOutputStream.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(context.openFileInput("eventsFeedback.xml"));
+            Element root = document.getDocumentElement();
+            Element newEvent = document.createElement("event");
+
+            Element name = document.createElement("name");
+            name.appendChild(document.createTextNode(Feedback.eventName));
+            newEvent.appendChild(name);
+
+            Element feedback = document.createElement("feedback");
+            feedback.appendChild(document.createTextNode(Feedback.comment));
+            newEvent.appendChild(feedback);
+
+            root.appendChild(newEvent);
+
+            DOMSource source = new DOMSource(document);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            StreamResult result = new StreamResult(file.getPath());
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static ArrayList readFeedbackXML(Context context, String eventName){
+
+        ArrayList<String> feedbackList= new ArrayList<>();
+        try{
+            InputStream inputStream = context.openFileInput("eventsFeedback.xml");
+            DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document XMLDoc = documentBuilder.parse(inputStream);
+            NodeList nodeList = XMLDoc.getElementsByTagName("event");
+            for (int i = 0; i < nodeList.getLength(); i++){
+                String name = XMLDoc.getElementsByTagName("name").item(i).getTextContent();
+                String feedbackComment = XMLDoc.getElementsByTagName("feedback").item(i).getTextContent();
+
+                if(name.equals(eventName)){
+                    feedbackList.add(feedbackComment);
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
+        return feedbackList;
 
     }
 

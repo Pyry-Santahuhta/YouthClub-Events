@@ -3,21 +3,16 @@ package com.example.youthclub_events;
 import java.util.ArrayList;
 
 public class eventInProgress extends event {
-    ArrayList<String> feedBack;
+    boolean ongoing;
 
-    public eventInProgress(String name, String location, String ageRange,  String dateAndTime, String description, ArrayList<String> list, int participants){
+    public eventInProgress(String name, String location, String ageRange,  String dateAndTime, String description,  int participants, boolean ongoing){
         this.name = name;
         this.location = location;
         this.ageRange = ageRange;
         this.dateAndTime = dateAndTime;
         this.description = description;
-        this.feedBack = list;
         this.attendeeCount = participants;
-
+        this.ongoing = ongoing;
     }
 
-
-    public void addFeedBack(String s) {
-        this.feedBack.add(s);
-    }
 }

@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
-    Button listEventsButton, startEventButton, createEventButton;
+    Button listEventsButton, startEventButton, createEventButton, eventsInProgressButton, pastEventsButton;
     FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
                     loadActivity("STARTEVENT");
                 }else if(v == findViewById(R.id.createEvent)){
                     loadActivity("CREATEEVENT");
+                }else if(v == findViewById(R.id.eventsInProgress)){
+                    loadActivity("EVENTSINPROGRESS");
+                }else if(v == findViewById(R.id.viewPastEventsButton)){
+                    loadActivity("PASTEVENTS");
                 }
             }
         };
@@ -74,10 +78,13 @@ public class MainActivity extends AppCompatActivity {
         listEventsButton = findViewById(R.id.listEvents);
         startEventButton = findViewById(R.id.startEvent);
         createEventButton = findViewById(R.id.createEvent);
+        eventsInProgressButton = findViewById(R.id.eventsInProgress);
+        pastEventsButton = findViewById(R.id.viewPastEventsButton);
         listEventsButton.setOnClickListener(clickListener);
         startEventButton.setOnClickListener(clickListener);
         createEventButton.setOnClickListener(clickListener);
-
+        eventsInProgressButton.setOnClickListener(clickListener);
+        pastEventsButton.setOnClickListener(clickListener);
     }
 
     public void loadActivity(String s){
@@ -98,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         }else if(s.equals("LOGIN")){
             Intent intent = new Intent(MainActivity.this, loginActivity.class);
+            startActivityForResult(intent, 1);
+        }else if(s.equals("EVENTSINPROGRESS")){
+            Intent intent = new Intent(MainActivity.this, eventsInProgressActivity.class);
+            startActivityForResult(intent, 1);
+        }else if(s.equals("PASTEVENTS")) {
+            Intent intent = new Intent(MainActivity.this, pastEventsActivity.class);
             startActivityForResult(intent, 1);
         }
     }

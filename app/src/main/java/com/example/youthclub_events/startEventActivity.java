@@ -20,6 +20,7 @@ public class startEventActivity extends AppCompatActivity {
     Spinner eventSpinner;
     int selectedPosition;
     Button startEventButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +34,21 @@ public class startEventActivity extends AppCompatActivity {
         eventSpinner = findViewById(R.id.eventSpinner);
         eventSpinner.setAdapter(arrayAdapter);
 
-        selectedPosition = eventSpinner.getSelectedItemPosition();
-
         startEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedPosition = eventSpinner.getSelectedItemPosition();
+                eventInProgress EventInProgress = new eventInProgress(eventsList.get(selectedPosition).name,
+                        eventsList.get(selectedPosition).location,
+                        eventsList.get(selectedPosition).ageRange,
+                        eventsList.get(selectedPosition).dateAndTime,
+                        eventsList.get(selectedPosition).description,
+                        0, true);
+
+                readAndWriteXML.saveInProgressEventToXML(EventInProgress, context);
+
                 Intent intent = new Intent(startEventActivity.this, eventsInProgressActivity.class);
+
                 startActivity(intent);
             }
         });
