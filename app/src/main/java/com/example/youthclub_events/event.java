@@ -1,6 +1,10 @@
 package com.example.youthclub_events;
 
+import androidx.annotation.NonNull;
+
 public class event {
+
+
     String dateAndTime;
     String name;
     String ageRange;
@@ -19,4 +23,11 @@ public class event {
 
     }
 
+    public event(){ }
+    @NonNull
+    @Override
+    public String toString() {
+        String toStringText = name;
+        return toStringText;
+    }
 }

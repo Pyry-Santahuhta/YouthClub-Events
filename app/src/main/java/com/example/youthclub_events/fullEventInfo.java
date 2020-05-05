@@ -35,18 +35,20 @@ public class fullEventInfo extends AppCompatActivity {
         setContentView(R.layout.activity_full_event_info);
 
         event Event = eventsList.get(selectedPosition);
+
         eventName = findViewById(R.id.eventNameTv);
-        eventLocation.findViewById(R.id.locationTv);
-        eventDateTime.findViewById(R.id.eventDatetimeTv);
-        eventAgeGroup.findViewById(R.id.eventAgeGroupTv);
-        eventDescription.findViewById(R.id.eventDescriptionTv);
+        eventLocation = findViewById(R.id.locationTv);
+        eventDateTime = findViewById(R.id.eventTimeTv);
+        eventAgeGroup = findViewById(R.id.eventAgeGroupTv);
+        eventDescription = findViewById(R.id.eventDescriptionTv);
 
 
         eventName.setText(Event.name);
         eventLocation.setText("At: " + Event.location);
         eventDateTime.setText("On: "+ Event.dateAndTime);
-        eventAgeGroup.setText("For ages:" + Event.ageRange);
+        eventAgeGroup.setText("For ages: " + Event.ageRange);
         eventDescription.setText(Event.description);
+
 
     }
 

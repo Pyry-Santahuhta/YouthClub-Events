@@ -33,5 +33,7 @@
     <string name="Finish">Finish</string>
     <string name="edit">Edit event</string>
     <string name="full_event_description">Full event description:</string>
+    <string name="select_an_event_to_start">Select an event to start</string>
+    <string name="start_eventshort">Start event</string>
 
 </resources>

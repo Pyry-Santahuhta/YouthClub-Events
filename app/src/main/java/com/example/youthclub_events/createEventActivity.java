@@ -93,7 +93,7 @@ public class createEventActivity extends AppCompatActivity {
                 }
                 else{
                     event Event = new event(eventName, eventLocation, ageGroup, ageGroupNum, eventDateAndTime, eventDescription);
-                    readAndWriteXML.saveToXML(Event, context);
+                    readAndWriteXML.saveEventToXML(Event, context);
                     Intent intent = new Intent(createEventActivity.this, MainActivity.class);
                     startActivity(intent);
 

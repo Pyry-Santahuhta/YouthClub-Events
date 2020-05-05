@@ -9,51 +9,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".eventsInProgressActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".settingsActivity"
-            android:parentActivityName=".MainActivity"
+        <activity
+            android:name=".settingsActivity"
             android:label="@string/settings"
-            >
-        </activity>
-        <activity android:name=".eventListActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".eventListActivity"
             android:label="@string/eventlist"
-            >
-        </activity>
-        <activity android:name=".startEventActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".startEventActivity"
             android:label="@string/start_event"
-            >
-        </activity>
-        <activity android:name=".createEventActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".createEventActivity"
             android:label="@string/create_event"
-            >
-        </activity>
-        <activity android:name=".loginActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/login">
-                <intent-filter>
-
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".loginActivity"
+            android:label="@string/login"
+            android:parentActivityName=".MainActivity">
+            <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".registerActivity"
-            android:parentActivityName=".MainActivity"
+        <activity
+            android:name=".registerActivity"
             android:label="@string/register"
-            >
-        </activity>
-        <activity android:name=".editEventActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".editEventActivity"
             android:label="@string/edit"
-            >
-        </activity>
-
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".fullEventInfo"
+            android:label="@string/edit"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

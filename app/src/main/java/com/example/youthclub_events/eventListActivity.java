@@ -3,6 +3,7 @@ package com.example.youthclub_events;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 
@@ -25,13 +26,28 @@ public class eventListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eventlist);
         eventsRecyclerView = findViewById(R.id.recyclerView);
-        context = eventListActivity.this;
+        this.context = getApplicationContext();
         eventsList = readAndWriteXML.readXML(context);
         eventsRecyclerView.setHasFixedSize(true);
         eventsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerAdapter = new MainAdapter(eventsList, context);
         eventsRecyclerView.setAdapter(recyclerAdapter);
+        eventsRecyclerView.addOnItemTouchListener(new recyclerViewOnClickListener(context, eventsRecyclerView, new recyclerViewOnClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if(view == findViewById(R.id.editButtonID)){
 
+                }else {
+                    Intent intent = new Intent(eventListActivity.this, fullEventInfo.class);
+                    intent.putExtra("selectedPosition", position);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+            }
+        }));
     }
 
 
