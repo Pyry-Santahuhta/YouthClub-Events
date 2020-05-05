@@ -3,6 +3,8 @@ import android.content.Context;
 import android.util.Xml;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlSerializer;
@@ -17,6 +19,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -94,6 +97,82 @@ public class readAndWriteXML {
         }
     }
 
+    public static void editXML(Context context, event Event, int selectedPosition){
+        File file = context.getFileStreamPath("eventdata.xml");
+        if (!file.exists()){
+            try {
+                XmlSerializer serializer = Xml.newSerializer();
+                StringWriter writer = new StringWriter();
+                serializer.setOutput(writer);
+                FileOutputStream fileOutputStream = context.openFileOutput("eventdata.xml", Context.MODE_APPEND);
+                serializer.setOutput(writer);
+                serializer.startDocument("UTF-8", true);
+                serializer.startTag(null, "events");
+                serializer.endTag(null, "events");
+                serializer.endDocument();
+                serializer.flush();
+                fileOutputStream.write(writer.toString().getBytes());
+                fileOutputStream.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(context.openFileInput("eventdata.xml"));
+
+            NodeList nodeList = document.getElementsByTagName("event");
+            Element element = null;
+
+            element = (Element) nodeList.item(selectedPosition);
+            Node name = element.getElementsByTagName("name").item(0).getFirstChild();
+            name.setNodeValue(Event.name);
+
+            Node location = element.getElementsByTagName("location").item(0).getFirstChild();
+            location.setNodeValue(Event.location);
+
+            Node ageGroup = element.getElementsByTagName("agegroup").item(0).getFirstChild();
+            ageGroup.setNodeValue(Event.ageRange);
+
+            Node ageGroupNum = element.getElementsByTagName("ageGroupNum").item(0).getFirstChild();
+            ageGroupNum.setNodeValue(String.valueOf(Event.ageRangeID));
+
+            Node dateTime = element.getElementsByTagName("datetime").item(0).getFirstChild();
+            dateTime.setNodeValue(Event.dateAndTime);
+
+            Node description = element.getElementsByTagName("description").item(0).getFirstChild();
+            description.setNodeValue(Event.description);
+
+            DOMSource domSource = new DOMSource(document);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            StreamResult result = new StreamResult(file.getPath());
+            transformer.transform(domSource, result);
+
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
 
 
     public static ArrayList readXML(Context context){
@@ -123,25 +202,5 @@ public class readAndWriteXML {
         return eventsList;
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

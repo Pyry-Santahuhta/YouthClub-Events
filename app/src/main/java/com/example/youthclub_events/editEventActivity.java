@@ -46,13 +46,12 @@ public class editEventActivity extends AppCompatActivity {
 
         event Event = eventsList.get(selectedPosition);
 
-
-
+        ageGroupID.check(Event.ageRangeID);
         eventNameID.setText(Event.name);
         eventLocationID.setText(Event.location);
         dateAndTimeID.setText(Event.dateAndTime);
         eventDescriptionID.setText(Event.description);
-        ageGroupID.check(Event.ageRangeID);
+
 
         editEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,8 +88,9 @@ public class editEventActivity extends AppCompatActivity {
                 }
                 else{
                    event Event = new event(eventName, eventLocation, ageGroup, ageGroupNum, eventDateAndTime, eventDescription);
-                   readAndWriteXML.saveToXML(Event, context);
-
+                   readAndWriteXML.editXML(context, Event, selectedPosition);
+                   Intent intent = new Intent(editEventActivity.this, MainActivity.class);
+                   startActivity(intent);
                 }
             }
         });

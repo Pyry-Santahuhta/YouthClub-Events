@@ -32,5 +32,6 @@
     <string name="description">Description</string>
     <string name="Finish">Finish</string>
     <string name="edit">Edit event</string>
+    <string name="full_event_description">Full event description:</string>
 
 </resources>

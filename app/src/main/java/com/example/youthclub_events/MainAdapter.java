@@ -16,6 +16,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     Context context;
     int itemPosition;
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         public TextView nameView;
         public TextView locationView;
         public TextView datetimeView;
