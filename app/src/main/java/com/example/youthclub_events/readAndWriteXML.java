@@ -252,7 +252,65 @@ public class readAndWriteXML {
 
     }
 
+    public static void deleteEvent(Context context, int selectedPosition) {
+        File file = context.getFileStreamPath("eventdata.xml");
+        if (!file.exists()) {
+            try {
+                XmlSerializer serializer = Xml.newSerializer();
+                StringWriter writer = new StringWriter();
+                serializer.setOutput(writer);
+                FileOutputStream fileOutputStream = context.openFileOutput("eventdata.xml", Context.MODE_APPEND);
+                serializer.setOutput(writer);
+                serializer.startDocument("UTF-8", true);
+                serializer.startTag(null, "events");
+                serializer.endTag(null, "events");
+                serializer.endDocument();
+                serializer.flush();
+                fileOutputStream.write(writer.toString().getBytes());
+                fileOutputStream.close();
 
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(context.openFileInput("eventdata.xml"));
+
+            NodeList nodeList = document.getElementsByTagName("event");
+            Element element = null;
+
+            element = (Element) nodeList.item(selectedPosition);
+            element.getParentNode().removeChild(element);
+
+            DOMSource domSource = new DOMSource(document);
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            StreamResult result = new StreamResult(file.getPath());
+            transformer.transform(domSource, result);
+
+
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (TransformerConfigurationException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     public static ArrayList readXML(Context context){
         ArrayList<event> eventsList = new ArrayList<>();

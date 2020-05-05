@@ -46,10 +46,11 @@ public class startEventActivity extends AppCompatActivity {
                         0, true);
 
                 readAndWriteXML.saveInProgressEventToXML(EventInProgress, context);
-
+                readAndWriteXML.deleteEvent(context, selectedPosition);
                 Intent intent = new Intent(startEventActivity.this, eventsInProgressActivity.class);
-
                 startActivity(intent);
+
+
             }
         });
 

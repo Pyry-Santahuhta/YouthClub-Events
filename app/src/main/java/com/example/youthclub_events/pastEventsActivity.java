@@ -28,9 +28,5 @@ public class pastEventsActivity extends AppCompatActivity {
 
 
 
-
-
-
-
     }
 }

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.util.ArrayList;
@@ -27,4 +28,6 @@ public class eventsInProgressActivity extends AppCompatActivity {
         recyclerAdapter = new SecondaryAdapter(eventInProgressList, context);
         eventsInProgressRecyclerView.setAdapter(recyclerAdapter);
     }
+
+
 }
