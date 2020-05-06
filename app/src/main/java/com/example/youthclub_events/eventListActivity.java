@@ -3,7 +3,6 @@ package com.example.youthclub_events;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -48,7 +47,7 @@ public class eventListActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user = dataSnapshot.getValue(User.class);
                 /* Waiting for the user info before opening the  */
-                recyclerAdapter = new MainAdapter(eventsList, context, user);
+                recyclerAdapter = new ListEventsAdapter(eventsList, context, user);
                 eventsRecyclerView.setAdapter(recyclerAdapter);
             }
             @Override

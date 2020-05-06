@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,7 +41,7 @@ public class eventsInProgressActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                recyclerAdapter = new SecondaryAdapter(eventInProgressList, context, user);
+                recyclerAdapter = new EventsInProgressAdapter(eventInProgressList, context, user);
                 eventsInProgressRecyclerView.setAdapter(recyclerAdapter);
             }
             @Override

@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
-class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+class ListEventsAdapter extends RecyclerView.Adapter<ListEventsAdapter.ViewHolder> {
     ArrayList<event> eventsList;
     Context context;
     int itemPosition;
@@ -30,21 +30,21 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             editButton = itemView.findViewById(R.id.viewComments);
         }
     }
-    public MainAdapter(ArrayList<event> eventsList, Context context, User user) {
+    public ListEventsAdapter(ArrayList<event> eventsList, Context context, User user) {
         this.eventsList = eventsList;
         this.context = context;
         this.user = user;
     }
     @NonNull
     @Override
-    public MainAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListEventsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_event_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ListEventsAdapter.ViewHolder holder, final int position) {
         if (user.getAccountType() == 1){
             holder.editButton.setVisibility(View.GONE);
         }else {

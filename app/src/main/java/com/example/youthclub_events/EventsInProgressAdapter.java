@@ -1,7 +1,6 @@
 package com.example.youthclub_events;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-class SecondaryAdapter extends RecyclerView.Adapter<SecondaryAdapter.ViewHolder> {
+class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapter.ViewHolder> {
     ArrayList<eventInProgress> eventsInProgressList;
     Context context;
     int itemPosition;
@@ -38,14 +37,14 @@ class SecondaryAdapter extends RecyclerView.Adapter<SecondaryAdapter.ViewHolder>
             attendantView = itemView.findViewById(R.id.participantTV);
         }
     }
-    public SecondaryAdapter(ArrayList<eventInProgress> eventsList, Context context, User user) {
+    public EventsInProgressAdapter(ArrayList<eventInProgress> eventsList, Context context, User user) {
         this.eventsInProgressList = eventsList;
         this.context = context;
         this.user = user;
     }
     @NonNull
     @Override
-    public SecondaryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public EventsInProgressAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_event_in_progress_item, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(view);
@@ -53,7 +52,7 @@ class SecondaryAdapter extends RecyclerView.Adapter<SecondaryAdapter.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final SecondaryAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final EventsInProgressAdapter.ViewHolder holder, final int position) {
         eventInProgress currentEvent = eventsInProgressList.get(position);
         if (currentEvent.ongoing){
             holder.nameView.setText(currentEvent.name);

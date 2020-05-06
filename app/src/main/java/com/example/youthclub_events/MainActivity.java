@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-         
+
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
@@ -91,10 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                if (id == R.id.settings) {
-                    loadActivity("SETTINGS");
-                }
-                else if (id == R.id.profile){
+                if (id == R.id.profile){
                     loadActivity("PROFILE");
                 }else if (id == R.id.log_out){
                     firebaseAuth.signOut();
@@ -129,10 +126,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadActivity(String s){
-        if(s.equals("SETTINGS")){
-            Intent intent = new Intent(MainActivity.this, settingsActivity.class);
-            startActivityForResult(intent, 1);
-        }else if(s.equals("PROFILE")){
+        if(s.equals("PROFILE")){
             Intent intent = new Intent(MainActivity.this, profileActivity.class);
             startActivityForResult(intent, 1);
         }else if(s.equals("EVENTLIST")){
