@@ -47,14 +47,11 @@ public class registerActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.registerButton);
         accountTypeSpinner = findViewById(R.id.accountTypeSpinner);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
-
-        user = new User();
-
         accountTypeList = new ArrayList<>();
         accountTypeList.add("Select an account type");
         accountTypeList.add("Attendee"); // 1
         accountTypeList.add("Organizer"); // 2
+
         stringArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, accountTypeList);
         stringArrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         accountTypeSpinner.setAdapter(stringArrayAdapter);
@@ -85,23 +82,19 @@ public class registerActivity extends AppCompatActivity {
                     accountTypeSpinner.requestFocus();
                 }
                 else{
-
-
                     fireBaseAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(registerActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()){
                                 Toast.makeText(registerActivity.this, "Couldn't sign up, try again later", Toast.LENGTH_SHORT).show();
                             }else {
-                                user.setEmailAddress(emailAddress);
-                                user.setUsername(username);
-                                user.setAccountType(accountTypeSpinner.getSelectedItemPosition());
-                                user.setUserID(fireBaseAuth.getUid());
-                                databaseReference.push().setValue(user);
 
+                                user = new User(username, emailAddress, accountTypeSpinner.getSelectedItemPosition(), fireBaseAuth.getUid());
+                                registerToDatabase(user);
 
                                 Toast.makeText(registerActivity.this, "Sign up successful, please log in", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(registerActivity.this, loginActivity.class);
+                                fireBaseAuth.signOut();
+                                Intent intent = new Intent(registerActivity.this , loginActivity.class);
                                 startActivity(intent);
                             }
 
@@ -114,6 +107,12 @@ public class registerActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    public void registerToDatabase(User user){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference(fireBaseAuth.getUid());
+        databaseReference.setValue(user);
     }
 
     @Override

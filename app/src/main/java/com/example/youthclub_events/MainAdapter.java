@@ -15,6 +15,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     ArrayList<event> eventsList;
     Context context;
     int itemPosition;
+    User user;
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameView;
@@ -29,9 +30,10 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             editButton = itemView.findViewById(R.id.viewComments);
         }
     }
-    public MainAdapter(ArrayList<event> eventsList, Context context) {
+    public MainAdapter(ArrayList<event> eventsList, Context context, User user) {
         this.eventsList = eventsList;
         this.context = context;
+        this.user = user;
     }
     @NonNull
     @Override
@@ -43,6 +45,11 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, final int position) {
+        if (user.getAccountType() == 1){
+            holder.editButton.setVisibility(View.GONE);
+        }else {
+            holder.editButton.setVisibility(View.VISIBLE);
+        }
         event currentEvent = eventsList.get(position);
         holder.nameView.setText(currentEvent.name);
         holder.locationView.setText(currentEvent.location);

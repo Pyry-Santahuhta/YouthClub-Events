@@ -4,7 +4,7 @@
     <string name="profile">Profile</string>
     <string name="Open" />
     <string name="Close" />
-    <string name="eventlist">List all upcoming events</string>
+    <string name="eventlist">Upcoming events</string>
     <string name="start_event">Start an existing event</string>
     <string name="create_event">Create a new event</string>
     <string name="username">Username</string>
@@ -35,6 +35,11 @@
     <string name="full_event_description">Full event description:</string>
     <string name="select_an_event_to_start">Select an event to start</string>
     <string name="start_eventshort">Start event</string>
+    <string name="past_events">past events</string>
+    <string name="ongoing_events">Ongoing events</string>
+    <string name="username2">Username:</string>
+    <string name="account_type2">Account type:</string>
+    <string name="email_address">Email address:</string>
 
 
 </resources>

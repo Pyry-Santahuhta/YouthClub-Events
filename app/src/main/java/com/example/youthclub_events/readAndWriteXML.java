@@ -34,11 +34,15 @@ public class readAndWriteXML {
                 XmlSerializer serializer = Xml.newSerializer();
                 StringWriter writer = new StringWriter();
                 serializer.setOutput(writer);
+
                 FileOutputStream fileOutputStream = context.openFileOutput("eventdata.xml", Context.MODE_APPEND);
                 serializer.setOutput(writer);
+
                 serializer.startDocument("UTF-8", true);
+
                 serializer.startTag(null, "events");
                 serializer.endTag(null, "events");
+
                 serializer.endDocument();
                 serializer.flush();
                 fileOutputStream.write(writer.toString().getBytes());
@@ -49,7 +53,6 @@ public class readAndWriteXML {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
 
         try {

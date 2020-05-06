@@ -53,7 +53,11 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".fullEventInfo"
-            android:label="@string/edit"
+            android:label="Event info"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".profileActivity"
+            android:label="Profile"
             android:parentActivityName=".MainActivity" />
     </application>
 

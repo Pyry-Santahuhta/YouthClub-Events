@@ -17,66 +17,66 @@
         <Button
             android:id="@+id/listEvents"
             android:layout_width="wrap_content"
-            android:layout_height="136dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="47dp"
-            android:layout_marginLeft="47dp"
-            android:layout_marginTop="-3dp"
-            android:layout_marginEnd="46dp"
-            android:layout_marginRight="46dp"
+            android:layout_marginTop="215dp"
             android:text="@string/eventlist" />
 
         <Button
             android:id="@+id/startEvent"
-            android:layout_width="317dp"
-            android:layout_height="67dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/listEvents"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="47dp"
-            android:layout_marginRight="47dp"
+            android:layout_marginTop="78dp"
             android:text="@string/start_event" />
 
         <Button
             android:id="@+id/createEvent"
-            android:layout_width="317dp"
-            android:layout_height="67dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/startEvent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="21dp"
-            android:layout_marginEnd="47dp"
-            android:layout_marginRight="47dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
             android:text="@string/create_event" />
 
         <Button
             android:id="@+id/eventsInProgress"
-            android:layout_width="317dp"
-            android:layout_height="67dp"
-            android:layout_below="@+id/createEvent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="21dp"
-            android:layout_marginEnd="46dp"
-            android:layout_marginRight="46dp"
-            android:text="Events in progress" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="214dp"
+            android:layout_toEndOf="@+id/listEvents"
+            android:layout_toRightOf="@+id/listEvents"
+            android:text="@string/ongoing_events" />
 
         <Button
             android:id="@+id/viewPastEventsButton"
-            android:layout_width="317dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/eventsInProgress"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="21dp"
-            android:layout_marginEnd="47dp"
-            android:layout_marginRight="47dp"
-            android:text="View past events" />
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-1dp"
+            android:layout_marginLeft="-1dp"
+            android:layout_marginTop="214dp"
+            android:layout_toEndOf="@+id/eventsInProgress"
+            android:layout_toRightOf="@+id/eventsInProgress"
+            android:text="@string/past_events" />
+
+        <TextView
+            android:id="@+id/welcometext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="17dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="3dp"
+            android:textSize="24sp" />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

@@ -19,14 +19,16 @@ public class pastEventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_events);
         eventsRecyclerView = findViewById(R.id.recyclerView);
+
         this.context = getApplicationContext();
+
         eventsList = readAndWriteXML.readInProgressEventXML(context);
+
         eventsRecyclerView.setHasFixedSize(true);
         eventsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         recyclerAdapter = new pastEventsAdapter(eventsList, context);
         eventsRecyclerView.setAdapter(recyclerAdapter);
-
-
 
     }
 }

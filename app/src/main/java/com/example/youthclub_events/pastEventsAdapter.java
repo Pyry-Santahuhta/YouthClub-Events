@@ -17,7 +17,6 @@ import java.util.ArrayList;
 class pastEventsAdapter extends RecyclerView.Adapter<pastEventsAdapter.ViewHolder> {
     ArrayList<eventInProgress> eventsInProgressList;
     Context context;
-    int itemPosition;
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameView;
@@ -59,12 +58,10 @@ class pastEventsAdapter extends RecyclerView.Adapter<pastEventsAdapter.ViewHolde
             holder.viewFeedbacks.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Intent intent = new Intent(context, feedbackObserveActivity.class);
                     intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("eventname", holder.nameView.getText());
                     context.startActivity(intent);
-
                 }
             });
         }

@@ -19,6 +19,7 @@ class SecondaryAdapter extends RecyclerView.Adapter<SecondaryAdapter.ViewHolder>
     ArrayList<eventInProgress> eventsInProgressList;
     Context context;
     int itemPosition;
+    User user;
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameView;
@@ -37,9 +38,10 @@ class SecondaryAdapter extends RecyclerView.Adapter<SecondaryAdapter.ViewHolder>
             attendantView = itemView.findViewById(R.id.participantTV);
         }
     }
-    public SecondaryAdapter(ArrayList<eventInProgress> eventsList, Context context) {
+    public SecondaryAdapter(ArrayList<eventInProgress> eventsList, Context context, User user) {
         this.eventsInProgressList = eventsList;
         this.context = context;
+        this.user = user;
     }
     @NonNull
     @Override
@@ -57,7 +59,19 @@ class SecondaryAdapter extends RecyclerView.Adapter<SecondaryAdapter.ViewHolder>
             holder.nameView.setText(currentEvent.name);
             holder.locationView.setText(currentEvent.location);
             holder.attendantView.setText(String.valueOf(currentEvent.attendeeCount));
-
+            if(user.getAccountType() == 1){
+                holder.endButton.setVisibility(View.GONE);
+                holder.addParticipantButton.setVisibility(View.GONE);
+                holder.feedbackEditText.setVisibility(View.VISIBLE);
+                holder.feedBackButton.setVisibility(View.VISIBLE);
+                holder.attendantView.setVisibility(View.GONE);
+            }else if(user.getAccountType() == 2){
+                holder.endButton.setVisibility(View.VISIBLE);
+                holder.addParticipantButton.setVisibility(View.VISIBLE);
+                holder.feedbackEditText.setVisibility(View.GONE);
+                holder.feedBackButton.setVisibility(View.GONE);
+                holder.attendantView.setVisibility(View.VISIBLE);
+            }
 
             holder.endButton.setOnClickListener(new View.OnClickListener() {
                 @Override

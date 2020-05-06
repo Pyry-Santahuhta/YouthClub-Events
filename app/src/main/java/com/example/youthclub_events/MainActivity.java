@@ -6,15 +6,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,20 +30,56 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
     private NavigationView navigationView;
+    TextView welcometext;
     Button listEventsButton, startEventButton, createEventButton, eventsInProgressButton, pastEventsButton;
     FirebaseAuth firebaseAuth;
+    DatabaseReference databaseReference;
+    FirebaseDatabase firebaseDatabase;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         firebaseAuth = firebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null){
             loadActivity("LOGIN");
-        }else{
-            Toast.makeText(MainActivity.this, firebaseAuth.getCurrentUser().toString(), Toast.LENGTH_SHORT).show();
         }
+
         super.onCreate(savedInstanceState);
+
         this.context = getApplicationContext();
         setContentView(R.layout.activity_main);
+
+        listEventsButton = findViewById(R.id.listEvents);
+        startEventButton = findViewById(R.id.startEvent);
+        createEventButton = findViewById(R.id.createEvent);
+        eventsInProgressButton = findViewById(R.id.eventsInProgress);
+        pastEventsButton = findViewById(R.id.viewPastEventsButton);
+
         drawerLayout = findViewById(R.id.drawer_layout);
+        welcometext = findViewById(R.id.welcometext);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+        databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                welcometext.setText("Welcome "+ user.getUsername()+"!");
+                if (user.getAccountType() == 1){
+                    startEventButton.setVisibility(View.GONE);
+                    createEventButton.setVisibility(View.GONE);
+                }else{
+                    startEventButton.setVisibility(View.VISIBLE);
+                    createEventButton.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
@@ -55,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
                     loadActivity("LOGIN");
                 }
                 return true;
+
             }
         });
-
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,11 +119,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        listEventsButton = findViewById(R.id.listEvents);
-        startEventButton = findViewById(R.id.startEvent);
-        createEventButton = findViewById(R.id.createEvent);
-        eventsInProgressButton = findViewById(R.id.eventsInProgress);
-        pastEventsButton = findViewById(R.id.viewPastEventsButton);
         listEventsButton.setOnClickListener(clickListener);
         startEventButton.setOnClickListener(clickListener);
         createEventButton.setOnClickListener(clickListener);

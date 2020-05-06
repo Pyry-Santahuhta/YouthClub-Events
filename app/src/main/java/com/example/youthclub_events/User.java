@@ -5,7 +5,14 @@ public class User {
     private String emailAddress;
     private String userID;
     private int accountType; // 1 for attendee and 2 for organizer
-    public User() {
+    public User(String username, String emailAddress, int accountType, String userID) {
+        this.username = username;
+        this.emailAddress = emailAddress;
+        this.accountType = accountType;
+        this.userID = userID;
+
+    }
+    public User(){
     }
 
     public String getUsername() {
