@@ -35,7 +35,6 @@ public class eventsInProgressActivity extends AppCompatActivity {
         eventsInProgressRecyclerView = findViewById(R.id.recyclerView);
         this.context = getApplicationContext();
 
-
         firebaseAuth = firebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());

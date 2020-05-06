@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
-
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
-        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+                user = dataSnapshot.getValue(User.class);
                 welcometext.setText("Welcome "+ user.getUsername()+"!");
                 if (user.getAccountType() == 1){
                     startEventButton.setVisibility(View.GONE);
@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+         
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();

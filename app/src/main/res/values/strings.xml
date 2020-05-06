@@ -40,6 +40,8 @@
     <string name="username2">Username:</string>
     <string name="account_type2">Account type:</string>
     <string name="email_address">Email address:</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="edit_account">edit account</string>
 
 
 </resources>

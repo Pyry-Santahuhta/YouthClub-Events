@@ -38,7 +38,6 @@ import javax.xml.transform.stream.StreamResult;
 
 
 public class createEventActivity extends AppCompatActivity {
-
     Button createEventButton;
     EditText eventNameID, eventLocationID, dateAndTimeID, eventDescriptionID;
     RadioGroup ageGroupID;
@@ -46,6 +45,7 @@ public class createEventActivity extends AppCompatActivity {
     String eventName, eventLocation, eventDateAndTime, ageGroup, eventDescription;
     Context context;
     int ageGroupNum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

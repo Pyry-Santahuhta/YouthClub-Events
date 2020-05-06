@@ -3,7 +3,6 @@ import android.content.Context;
 import android.util.Xml;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -174,10 +173,7 @@ public class readAndWriteXML {
         } catch (IOException | ParserConfigurationException | SAXException | TransformerException e) {
             e.printStackTrace();
         }
-
-
     }
-
 
     public static void editXML(Context context, event Event, int selectedPosition) {
         File file = context.getFileStreamPath("eventdata.xml");

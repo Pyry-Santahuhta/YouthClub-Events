@@ -47,6 +47,7 @@ public class eventListActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user = dataSnapshot.getValue(User.class);
+                /* Waiting for the user info before opening the  */
                 recyclerAdapter = new MainAdapter(eventsList, context, user);
                 eventsRecyclerView.setAdapter(recyclerAdapter);
             }

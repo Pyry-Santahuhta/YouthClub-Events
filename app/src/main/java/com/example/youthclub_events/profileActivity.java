@@ -2,7 +2,10 @@ package com.example.youthclub_events;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,34 +20,38 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class profileActivity extends AppCompatActivity {
-
+public class profileActivity extends AppCompatActivity implements EditProfileDialog.EditProfileDialogListener {
+    Button editProfileButton;
     TextView usernameTV, accountTypeTV, emailTV;
-
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
+
     User user;
     Context context;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         this.context = getApplicationContext();
 
-        firebaseAuth = firebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         usernameTV = findViewById(R.id.userNameTv);
         accountTypeTV = findViewById(R.id.accountTypeTv);
         emailTV = findViewById(R.id.emailTv);
+        editProfileButton = findViewById(R.id.editProfileButton);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
-        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
+
+                user = dataSnapshot.getValue(User.class);
                 usernameTV.setText(user.getUsername());
                 if(user.getAccountType() == 1){
                     accountTypeTV.setText("Attendee");
@@ -52,17 +59,26 @@ public class profileActivity extends AppCompatActivity {
                     accountTypeTV.setText("Organizer");
                 }
                 emailTV.setText(user.getEmailAddress());
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
 
-
-
-
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
             }
+        });
+    }
 
+    public void openDialog(){
+        EditProfileDialog editProfileDialog = new EditProfileDialog();
+        editProfileDialog.show(getSupportFragmentManager(), "Edit dialog");
+
+    }
 
     @Override
     public void onBackPressed(){
@@ -73,4 +89,9 @@ public class profileActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void applyTexts(String username, int accountType) {
+        databaseReference.child("username").setValue(username);
+        databaseReference.child("accountType").setValue(accountType);
+    }
 }
