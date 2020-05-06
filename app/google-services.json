@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "23463655068",
+    "firebase_url": "https://youthclub-events.firebaseio.com",
+    "project_id": "youthclub-events",
+    "storage_bucket": "youthclub-events.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23463655068:android:e4cca5b99862d06fbb1f59",
+        "android_client_info": {
+          "package_name": "com.example.youthclub_events"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23463655068-4pcd0e7blqo9krq8rpqor1dkmegqju9v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdBTAD_S1CHCuUifKH0Szo5aXolfKNdSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23463655068-4pcd0e7blqo9krq8rpqor1dkmegqju9v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
