@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 class ListEventsAdapter extends RecyclerView.Adapter<ListEventsAdapter.ViewHolder> {
-    ArrayList<event> eventsList;
-    Context context;
-    int itemPosition;
-    User user;
+    private ArrayList<event> eventsList;
+    private Context context;
+    private int itemPosition;
+    private User user;
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameView;
@@ -39,8 +39,7 @@ class ListEventsAdapter extends RecyclerView.Adapter<ListEventsAdapter.ViewHolde
     @Override
     public ListEventsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_event_item, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -59,7 +58,7 @@ class ListEventsAdapter extends RecyclerView.Adapter<ListEventsAdapter.ViewHolde
             public void onClick(View v) {
                 itemPosition = position;
                 Intent intent = new Intent(context, editEventActivity.class);
-                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("selectedPosition", itemPosition);
                 context.startActivity(intent);
             }

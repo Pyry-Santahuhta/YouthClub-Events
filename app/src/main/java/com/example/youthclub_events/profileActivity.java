@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 
 public class profileActivity extends AppCompatActivity implements EditProfileDialog.EditProfileDialogListener {
     Button editProfileButton;
@@ -45,21 +47,25 @@ public class profileActivity extends AppCompatActivity implements EditProfileDia
         editProfileButton = findViewById(R.id.editProfileButton);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        databaseReference = firebaseDatabase.getReference(Objects.requireNonNull(firebaseAuth.getUid()));
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 user = dataSnapshot.getValue(User.class);
-                usernameTV.setText(user.getUsername());
-                if(user.getAccountType() == 1){
-                    accountTypeTV.setText("Attendee");
-                }else if(user.getAccountType() == 2){
-                    accountTypeTV.setText("Organizer");
-                }
-                emailTV.setText(user.getEmailAddress());
+                if (user != null) {
+                    usernameTV.setText(user.getUsername());
 
+                    if(user.getAccountType() == 1){
+                        accountTypeTV.setText("Attendee");
+                    }else if(user.getAccountType() == 2){
+                        accountTypeTV.setText("Organizer");
+                    }else if(user.getAccountType() == 0){
+                        accountTypeTV.setText("ADMIN");
+                    }
+                    emailTV.setText(user.getEmailAddress());
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

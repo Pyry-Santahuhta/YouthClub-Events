@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 class pastEventsAdapter extends RecyclerView.Adapter<pastEventsAdapter.ViewHolder> {
-    ArrayList<eventInProgress> eventsInProgressList;
-    Context context;
+    private ArrayList<eventInProgress> eventsInProgressList;
+    private Context context;
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameView;
@@ -40,8 +40,7 @@ class pastEventsAdapter extends RecyclerView.Adapter<pastEventsAdapter.ViewHolde
     public pastEventsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_past_event, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -59,7 +58,7 @@ class pastEventsAdapter extends RecyclerView.Adapter<pastEventsAdapter.ViewHolde
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, feedbackObserveActivity.class);
-                    intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("eventname", holder.nameView.getText());
                     context.startActivity(intent);
                 }

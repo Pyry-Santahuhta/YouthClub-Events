@@ -8,7 +8,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlSerializer;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,7 +17,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -47,8 +45,6 @@ public class readAndWriteXML {
                 fileOutputStream.write(writer.toString().getBytes());
                 fileOutputStream.close();
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -117,8 +113,6 @@ public class readAndWriteXML {
                 fileOutputStream.write(writer.toString().getBytes());
                 fileOutputStream.close();
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -192,8 +186,6 @@ public class readAndWriteXML {
                 fileOutputStream.write(writer.toString().getBytes());
                 fileOutputStream.close();
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -234,17 +226,7 @@ public class readAndWriteXML {
             transformer.transform(domSource, result);
 
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
             e.printStackTrace();
         }
 
@@ -268,8 +250,6 @@ public class readAndWriteXML {
                 fileOutputStream.write(writer.toString().getBytes());
                 fileOutputStream.close();
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -294,24 +274,15 @@ public class readAndWriteXML {
             transformer.transform(domSource, result);
 
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (ParserConfigurationException | IOException | SAXException | TransformerException e) {
             e.printStackTrace();
         }
 
 
     }
 
-    public static ArrayList readXML(Context context){
+
+    public static ArrayList<event> readXML(Context context){
         ArrayList<event> eventsList = new ArrayList<>();
         try{
             InputStream inputStream = context.openFileInput("eventdata.xml");
@@ -328,11 +299,7 @@ public class readAndWriteXML {
                 event Event = new event(name, location, ageGroup, ageGroupNum, Datetime, description);
                 eventsList.add(Event);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
+        } catch (IOException | ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
         return eventsList;
@@ -341,7 +308,7 @@ public class readAndWriteXML {
 
 
 
-    public static ArrayList readInProgressEventXML(Context context){
+    public static ArrayList<eventInProgress> readInProgressEventXML(Context context){
         int n = 0;
         ArrayList<eventInProgress> eventsInProgressList = new ArrayList<>();
 
@@ -361,15 +328,12 @@ public class readAndWriteXML {
                 eventInProgress EventInProgress = new eventInProgress(name, location, ageGroup, Datetime, description, participants, Boolean);
                 eventsInProgressList.add(EventInProgress);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
+        } catch (IOException | ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
         return eventsInProgressList;
     }
+
 
     public static void editOngoingXML(Context context, boolean onGoing, int selectedPosition) {
         File file = context.getFileStreamPath("eventsInProgressdata.xml");
@@ -388,8 +352,6 @@ public class readAndWriteXML {
                 fileOutputStream.write(writer.toString().getBytes());
                 fileOutputStream.close();
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -414,17 +376,7 @@ public class readAndWriteXML {
             StreamResult result = new StreamResult(file.getPath());
             transformer.transform(domSource, result);
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (ParserConfigurationException | IOException | SAXException | TransformerException e) {
             e.printStackTrace();
         }
 
@@ -447,8 +399,6 @@ public class readAndWriteXML {
                 fileOutputStream.write(writer.toString().getBytes());
                 fileOutputStream.close();
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -474,17 +424,7 @@ public class readAndWriteXML {
             StreamResult result = new StreamResult(file.getPath());
             transformer.transform(domSource, result);
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (ParserConfigurationException | IOException | SAXException | TransformerException e) {
             e.printStackTrace();
         }
 
@@ -507,8 +447,6 @@ public class readAndWriteXML {
                 fileOutputStream.write(writer.toString().getBytes());
                 fileOutputStream.close();
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -538,23 +476,13 @@ public class readAndWriteXML {
             StreamResult result = new StreamResult(file.getPath());
             transformer.transform(source, result);
 
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (ParserConfigurationException | IOException | SAXException | TransformerException e) {
             e.printStackTrace();
         }
 
     }
 
-    public static ArrayList readFeedbackXML(Context context, String eventName){
+    public static ArrayList<String> readFeedbackXML(Context context, String eventName){
 
         ArrayList<String> feedbackList= new ArrayList<>();
         try{
@@ -571,11 +499,7 @@ public class readAndWriteXML {
                 }
 
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
+        } catch (IOException | ParserConfigurationException | SAXException e) {
             e.printStackTrace();
         }
         return feedbackList;

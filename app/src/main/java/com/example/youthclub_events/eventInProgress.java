@@ -1,6 +1,5 @@
 package com.example.youthclub_events;
 
-import java.util.ArrayList;
 
 public class eventInProgress extends event {
     boolean ongoing;

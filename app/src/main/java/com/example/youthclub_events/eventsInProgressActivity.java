@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class eventsInProgressActivity extends AppCompatActivity {
     RecyclerView eventsInProgressRecyclerView;
@@ -33,7 +34,7 @@ public class eventsInProgressActivity extends AppCompatActivity {
         eventsInProgressRecyclerView = findViewById(R.id.recyclerView);
         this.context = getApplicationContext();
 
-        firebaseAuth = firebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
         final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();

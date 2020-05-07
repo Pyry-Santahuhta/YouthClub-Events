@@ -25,7 +25,6 @@ public class loginActivity extends AppCompatActivity {
     private Button loginButton;
     private Button registerButton;
     FirebaseAuth fireBaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
     private String emailAddress;
     private String password;
 
@@ -38,33 +37,24 @@ public class loginActivity extends AppCompatActivity {
         passwordID = findViewById(R.id.password);
         loginButton = findViewById(R.id.login);
 
-        fireBaseAuth = fireBaseAuth.getInstance();
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser firebaseUser = fireBaseAuth.getCurrentUser();
-                if(firebaseUser != null ){
-                    loadActivity("MAIN");
-                }
-            }
-        };
-
+        fireBaseAuth = FirebaseAuth.getInstance();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 emailAddress = emailID.getText().toString();
                 password = passwordID.getText().toString();
-                if (emailAddress.isEmpty()){
+                if ((emailAddress.isEmpty()) && (password.isEmpty())) {
+                    Toast.makeText(loginActivity.this, "Please enter credentials!", Toast.LENGTH_SHORT).show();
+                }
+                else if (emailAddress.isEmpty()){
                     emailID.setError("Please enter an email address");
                     emailID.requestFocus();
                 }
                 else if (password.isEmpty()){
                     passwordID.setError("Please enter a password");
                     passwordID.requestFocus();
-                }else if ((emailAddress.isEmpty()) && (password.isEmpty())){
-                    Toast.makeText(loginActivity.this, "Please enter credentials!", Toast.LENGTH_SHORT).show();
-                }else{
+                } else{
                     fireBaseAuth.signInWithEmailAndPassword(emailAddress, password).addOnCompleteListener(loginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

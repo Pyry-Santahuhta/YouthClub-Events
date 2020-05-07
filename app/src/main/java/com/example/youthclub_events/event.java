@@ -27,7 +27,6 @@ public class event {
     @NonNull
     @Override
     public String toString() {
-        String toStringText = name;
-        return toStringText;
+        return name;
     }
 }

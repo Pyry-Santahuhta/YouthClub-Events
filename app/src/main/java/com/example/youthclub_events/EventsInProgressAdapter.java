@@ -15,10 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapter.ViewHolder> {
-    ArrayList<eventInProgress> eventsInProgressList;
-    Context context;
-    int itemPosition;
-    User user;
+    private ArrayList<eventInProgress> eventsInProgressList;
+    private Context context;
+    private User user;
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameView;
@@ -47,8 +46,7 @@ class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapt
     public EventsInProgressAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_event_in_progress_item, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override

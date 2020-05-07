@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class registerActivity extends AppCompatActivity {
@@ -35,7 +36,6 @@ public class registerActivity extends AppCompatActivity {
     private String password;
     private String username;
     FirebaseAuth fireBaseAuth;
-    DatabaseReference databaseReference;
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class registerActivity extends AppCompatActivity {
         stringArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, accountTypeList);
         stringArrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         accountTypeSpinner.setAdapter(stringArrayAdapter);
-        fireBaseAuth = fireBaseAuth.getInstance();
+        fireBaseAuth = FirebaseAuth.getInstance();
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +111,7 @@ public class registerActivity extends AppCompatActivity {
 
     public void registerToDatabase(User user){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference(fireBaseAuth.getUid());
+        DatabaseReference databaseReference = firebaseDatabase.getReference(Objects.requireNonNull(fireBaseAuth.getUid()));
         databaseReference.setValue(user);
     }
 
