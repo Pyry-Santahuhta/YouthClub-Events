@@ -41,7 +41,9 @@
     <string name="account_type2">Account type:</string>
     <string name="email_address">Email address:</string>
     <string name="edit_profile">Edit Profile</string>
-    <string name="edit_account">edit account</string>
+    <string name="edit_account">Edit account</string>
+    <string name="edit2">Edit</string>
+    <string name="view_feedback">View feedback</string>
 
 
 </resources>

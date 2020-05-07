@@ -12,74 +12,88 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
 
         <Button
             android:id="@+id/listEvents"
-            android:layout_width="wrap_content"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="219dp"
-            android:background="@color/colorPrimaryDark"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="218dp"
+            android:background="@color/colorPrimary"
             android:text="@string/eventlist"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#FFFFFF" />
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/startEvent"
-            android:layout_width="match_parent"
+            android:layout_width="222dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/listEvents"
-            android:layout_marginTop="78dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="94dp"
+            android:layout_marginTop="94dp"
+            android:layout_marginEnd="95dp"
             android:background="@color/colorPrimary"
-            android:text="@string/start_event" />
+            android:text="@string/start_event"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/createEvent"
-            android:layout_width="match_parent"
+            android:layout_width="222dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/startEvent"
+            android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="9dp"
-            android:layout_marginRight="0dp"
+            android:layout_marginStart="94dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginRight="95dp"
             android:background="@color/colorPrimary"
-            android:text="@string/create_event" />
+            android:text="@string/create_event"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/eventsInProgress"
-            android:layout_width="wrap_content"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="136dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="219dp"
-            android:layout_marginEnd="136dp"
+            android:layout_marginStart="148dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="218dp"
+            android:layout_marginEnd="148dp"
             android:layout_toRightOf="@+id/listEvents"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="@string/ongoing_events"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#FFFFFF" />
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/viewPastEventsButton"
-            android:layout_width="wrap_content"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="302dp"
-            android:layout_marginLeft="27dp"
-            android:layout_marginTop="219dp"
-            android:layout_marginEnd="17dp"
+            android:layout_marginStart="285dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="218dp"
+            android:layout_marginEnd="11dp"
             android:layout_toRightOf="@+id/eventsInProgress"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="@string/past_events"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="#FFFFFF" />
+            android:textColor="#000000"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/welcometext"
@@ -91,20 +105,19 @@
             android:layout_marginStart="76dp"
             android:layout_marginLeft="76dp"
             android:layout_marginTop="45dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#000000"
             android:textSize="24sp" />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
+        style="@style/Theme.AppCompat.NoActionBar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:menu="@menu/navigation_menu"
+        android:layout_gravity="start"
+        android:background="@color/colorPrimary"
         app:headerLayout="@layout/nav_header"
-        android:id="@+id/navigationView"
-        android:layout_gravity = "start"
-        style="@style/Theme.AppCompat.NoActionBar"
-        >
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/navigation_menu"></com.google.android.material.navigation.NavigationView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

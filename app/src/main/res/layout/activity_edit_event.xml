@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:id="@+id/eventDescription"
@@ -18,18 +18,18 @@
         app:layout_constraintTop_toBottomOf="@+id/eventDateText" />
 
     <EditText
-        android:maxLength="25"
         android:id="@+id/eventNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/event_name"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:maxLength="25"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventname"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/eventname" />
 
     <TextView
         android:id="@+id/eventname"
@@ -65,13 +65,13 @@
         app:layout_constraintTop_toBottomOf="@+id/eventNameText" />
 
     <EditText
-        android:maxLength="20"
         android:id="@+id/eventLocationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/event_location"
         android:inputType="textPersonName"
+        android:maxLength="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +137,6 @@
         app:layout_constraintVertical_bias="0.782" />
 
     <EditText
-        android:maxLength="15"
         android:id="@+id/eventDateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -145,24 +144,25 @@
         android:hint="@string/date_and_time"
         android:importantForAutofill="no"
         android:inputType="datetime|textPersonName"
+        android:maxLength="15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventDate" />
 
     <EditText
-        android:maxLength="60"
         android:id="@+id/eventDescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/description"
+        android:importantForAutofill="no"
         android:inputType="textMultiLine"
+        android:maxLength="60"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventDescription"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/eventDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

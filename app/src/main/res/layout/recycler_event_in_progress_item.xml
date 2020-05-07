@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp"
-    >
+    app:cardBackgroundColor="#97C2E6"
+    app:cardCornerRadius="0dp"
+    app:cardPreventCornerOverlap="false"
+    app:contentPadding="2dp">
 
     <RelativeLayout
         android:id="@+id/relativelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        android:background="@color/colorPrimary">
 
         <Button
             android:id="@+id/endEventButton"
@@ -55,31 +58,37 @@
 
         <Button
             android:id="@+id/addParticipant"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/endEventButton"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
-            android:text="Add participant" />
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Add participant"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorAccent" />
 
         <Button
             android:id="@+id/addFeedbackButton"
-            android:layout_width="wrap_content"
+            android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/addParticipant"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
             android:layout_toEndOf="@+id/feedBackEt"
             android:layout_toRightOf="@+id/feedBackEt"
-            android:text="Add feedback" />
+            android:background="@color/colorPrimaryDark"
+            android:text="Add feedback"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorAccent" />
 
         <TextView
             android:id="@+id/participantTV"

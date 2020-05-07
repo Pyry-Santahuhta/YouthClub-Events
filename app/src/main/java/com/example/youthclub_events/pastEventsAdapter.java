@@ -49,6 +49,8 @@ class pastEventsAdapter extends RecyclerView.Adapter<pastEventsAdapter.ViewHolde
         eventInProgress currentEvent = eventsInProgressList.get(position);
         if (currentEvent.ongoing){
             holder.itemView.setVisibility(View.GONE);
+            ViewGroup.LayoutParams layoutParameter = holder.itemView.getLayoutParams();
+            layoutParameter.height = 0;
         }else{
 
             holder.nameView.setText(currentEvent.name);
