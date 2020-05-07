@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="295dp"
+        android:layout_height="292dp"
+        android:layout_marginTop="124dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
@@ -55,7 +66,7 @@
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="56dp"
         android:background="@color/colorPrimary"
         android:text="@string/register"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,4 +85,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

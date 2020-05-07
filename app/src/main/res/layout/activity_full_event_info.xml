@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="348dp"
+        android:layout_height="359dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/eventNameTv"
         android:layout_width="wrap_content"
@@ -71,4 +82,5 @@
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventDescriptionHeaderTv" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

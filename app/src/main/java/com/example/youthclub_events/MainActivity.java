@@ -59,32 +59,37 @@ public class MainActivity extends AppCompatActivity {
         welcometext = findViewById(R.id.welcometext);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
+        if(firebaseAuth.getCurrentUser() != null){
+            databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
 
-        //Getting current user's data
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                user = dataSnapshot.getValue(User.class);
-                if (user != null) {
-                    welcometext.setText("Welcome "+ user.getUsername()+"!");
+            //Getting current user's data
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    user = dataSnapshot.getValue(User.class);
+                    if (user != null) {
+                        welcometext.setText("Welcome "+ user.getUsername()+"!");
 
-                    //Depending on userType, hiding different buttons and texts, admins can see everything
-                    if (user.getAccountType() == 1){
-                        startEventButton.setVisibility(View.GONE);
-                        createEventButton.setVisibility(View.GONE);
-                    }else{
-                        startEventButton.setVisibility(View.VISIBLE);
-                        createEventButton.setVisibility(View.VISIBLE);
+                        //Depending on userType, hiding different buttons and texts, admins can see everything
+                        if (user.getAccountType() == 1){
+                            startEventButton.setVisibility(View.GONE);
+                            createEventButton.setVisibility(View.GONE);
+                        }else{
+                            startEventButton.setVisibility(View.VISIBLE);
+                            createEventButton.setVisibility(View.VISIBLE);
+                        }
                     }
                 }
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+        }
+
+
+
 
         //Setting up navigation view
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);

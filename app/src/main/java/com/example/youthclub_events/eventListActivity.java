@@ -2,18 +2,15 @@ package com.example.youthclub_events;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class eventListActivity extends AppCompatActivity {
@@ -71,7 +67,7 @@ public class eventListActivity extends AppCompatActivity {
 
             @Override
             public void onLongItemClick(View view, int position) {
-                Intent intent = new Intent(eventListActivity.this, fullEventInfo.class);
+                Intent intent = new Intent(eventListActivity.this, fullEventInfoActivity.class);
                 intent.putExtra("selectedPosition", position);
                 startActivity(intent);
             }

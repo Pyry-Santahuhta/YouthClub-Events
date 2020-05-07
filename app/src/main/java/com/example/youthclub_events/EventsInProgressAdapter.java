@@ -105,7 +105,7 @@ class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapt
                     Toast.makeText(context, "Added participant!", Toast.LENGTH_SHORT).show();
                     updateList();
                     eventInProgress currentEvent = eventsInProgressList.get(position);
-                    System.out.println(currentEvent.attendeeCount);
+
                     holder.attendantView.setText(String.valueOf(currentEvent.attendeeCount));
 
                 }

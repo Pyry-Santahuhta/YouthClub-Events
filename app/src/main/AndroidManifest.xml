@@ -48,7 +48,7 @@
             android:label="@string/edit"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".fullEventInfo"
+            android:name=".fullEventInfoActivity"
             android:label="Event info"
             android:parentActivityName=".MainActivity" />
         <activity

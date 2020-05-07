@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 
-public class fullEventInfo extends AppCompatActivity {
+public class fullEventInfoActivity extends AppCompatActivity {
 
 
 
