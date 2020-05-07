@@ -62,6 +62,7 @@ public class registerActivity extends AppCompatActivity {
                 emailAddress = emailID.getText().toString();
                 password = passwordID.getText().toString();
                 username = usernameID.getText().toString();
+                // Checking all of the user data to be set
                 if ((emailAddress.isEmpty()) && (password.isEmpty()) && (username.isEmpty())){
                     Toast.makeText(registerActivity.this, "Please enter credentials!", Toast.LENGTH_SHORT).show();
                 }
@@ -82,17 +83,19 @@ public class registerActivity extends AppCompatActivity {
                     accountTypeSpinner.requestFocus();
                 }
                 else{
+                    //If everything is set we create an user to firebase using email authentication
                     fireBaseAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(registerActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()){
                                 Toast.makeText(registerActivity.this, "Couldn't sign up, try again later", Toast.LENGTH_SHORT).show();
                             }else {
-
+                                //We add the users data to the firebase database
                                 user = new User(username, emailAddress, accountTypeSpinner.getSelectedItemPosition(), fireBaseAuth.getUid());
                                 registerToDatabase(user);
 
                                 Toast.makeText(registerActivity.this, "Sign up successful, please log in", Toast.LENGTH_SHORT).show();
+                                //We sign out to log back in, in order to test the new account
                                 fireBaseAuth.signOut();
                                 Intent intent = new Intent(registerActivity.this , loginActivity.class);
                                 startActivity(intent);
@@ -109,6 +112,7 @@ public class registerActivity extends AppCompatActivity {
 
     }
 
+    // making a new user to the firebase database
     public void registerToDatabase(User user){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference(Objects.requireNonNull(fireBaseAuth.getUid()));

@@ -11,6 +11,7 @@ public class eventInProgress extends event {
         this.dateAndTime = dateAndTime;
         this.description = description;
         this.attendeeCount = participants;
+        //Ongoing will be checked when showing past events and currently running events
         this.ongoing = ongoing;
     }
 

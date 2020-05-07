@@ -56,6 +56,8 @@ class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapt
             holder.nameView.setText(currentEvent.name);
             holder.locationView.setText(currentEvent.location);
             holder.attendantView.setText(String.valueOf(currentEvent.attendeeCount));
+
+            //Depending on userType, hiding different buttons and texts, admins can see everything
             if(user.getAccountType() == 1){
                 holder.endButton.setVisibility(View.GONE);
                 holder.addParticipantButton.setVisibility(View.GONE);
@@ -70,6 +72,7 @@ class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapt
                 holder.attendantView.setVisibility(View.VISIBLE);
             }
 
+            //Edit the current event to not be ongoing, and hide the item from view
             holder.endButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -80,6 +83,7 @@ class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapt
                 }
             });
 
+            //Add feedback to the feedback xml with the event name
             holder.feedBackButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -93,6 +97,7 @@ class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapt
                 }
             });
 
+            //Update the list eventlist after editing xml participant count to get live updating numbers
             holder.addParticipantButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -107,6 +112,7 @@ class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapt
 
             });
 
+            //Hide events that are ended
         }else{
            holder.itemView.setVisibility(View.GONE);
             ViewGroup.LayoutParams layoutParameter = holder.itemView.getLayoutParams();
@@ -120,6 +126,7 @@ class EventsInProgressAdapter extends RecyclerView.Adapter<EventsInProgressAdapt
         return eventsInProgressList.size();
     }
 
+    //Method for updating the list
     public void updateList(){
         this.eventsInProgressList = readAndWriteXML.readInProgressEventXML(context);
     }

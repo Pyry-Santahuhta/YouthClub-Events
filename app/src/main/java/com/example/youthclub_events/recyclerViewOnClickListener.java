@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +14,7 @@ public class recyclerViewOnClickListener implements RecyclerView.OnItemTouchList
         void onLongItemClick(View view, int position);
     }
 
+    // This is the recyclerviewonclicklistener we use to get to full event info from the eventsList
     private GestureDetector gestureDetector;
     public recyclerViewOnClickListener(Context context, final RecyclerView recyclerView, OnItemClickListener listener) {
         itemClickListener = listener;
@@ -23,7 +23,6 @@ public class recyclerViewOnClickListener implements RecyclerView.OnItemTouchList
             public boolean onSingleTapUp(MotionEvent e) {
                 return true;
             }
-
             @Override
             public void onLongPress(MotionEvent e) {
                 View child = recyclerView.findChildViewUnder(e.getX(), e.getY());

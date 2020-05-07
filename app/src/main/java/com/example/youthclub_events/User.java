@@ -4,7 +4,7 @@ public class User {
     private String username;
     private String emailAddress;
     private String userID;
-    private int accountType; // 1 for attendee and 2 for organizer
+    private int accountType; // 1 for attendee and 2 for organizer, 0 for admin which can only be set manually from the firebase database, which I have already made
     public User(String username, String emailAddress, int accountType, String userID) {
         this.username = username;
         this.emailAddress = emailAddress;

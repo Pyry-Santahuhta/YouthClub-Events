@@ -44,6 +44,8 @@ public class loginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 emailAddress = emailID.getText().toString();
                 password = passwordID.getText().toString();
+
+                //Check all data is inserted
                 if ((emailAddress.isEmpty()) && (password.isEmpty())) {
                     Toast.makeText(loginActivity.this, "Please enter credentials!", Toast.LENGTH_SHORT).show();
                 }
@@ -55,6 +57,7 @@ public class loginActivity extends AppCompatActivity {
                     passwordID.setError("Please enter a password");
                     passwordID.requestFocus();
                 } else{
+                    //Sign in to firebase and open main if verified
                     fireBaseAuth.signInWithEmailAndPassword(emailAddress, password).addOnCompleteListener(loginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -78,19 +81,7 @@ public class loginActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
-
-    private void validateUser(String username, String password){
-        if((username.equals("admin")) && (password.equals("ADMIN"))){
-            Intent intent = new Intent(loginActivity.this, MainActivity.class);
-            startActivityForResult(intent, 1);
-
-        }
-
-
-}
 
     public void loadActivity(String s){
         if(s.equals("REGISTER")){
@@ -101,6 +92,7 @@ public class loginActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         }
     }
+
     @Override
     public void onBackPressed(){
         Intent intent = new Intent();
@@ -108,6 +100,5 @@ public class loginActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
-
 
 }

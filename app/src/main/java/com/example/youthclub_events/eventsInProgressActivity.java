@@ -34,13 +34,14 @@ public class eventsInProgressActivity extends AppCompatActivity {
         eventsInProgressRecyclerView = findViewById(R.id.recyclerView);
         this.context = getApplicationContext();
 
+        //Getting user and data from firebase
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
-        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Waiting for user data from firebase and then opening recyclerview
                 User user = dataSnapshot.getValue(User.class);
                 recyclerAdapter = new EventsInProgressAdapter(eventInProgressList, context, user);
                 eventsInProgressRecyclerView.setAdapter(recyclerAdapter);

@@ -8,6 +8,7 @@ public class event {
     String dateAndTime;
     String name;
     String ageRange;
+    //AgeRangeID is for setting the radiogroup when editing
     int ageRangeID;
     String description;
     String location;

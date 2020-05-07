@@ -32,18 +32,12 @@ public class feedbackObserveActivity extends AppCompatActivity {
 
 
         eventname = getIntent().getStringExtra("eventname");
-        System.out.println(eventname);
+
+        //Search for the correct events feedback from XML
         feedbackList = readAndWriteXML.readFeedbackXML(context, eventname);
         stringArrayAdapter = new ArrayAdapter<>(this, android.R.layout. simple_list_item_1, feedbackList);
-        System.out.println(feedbackList.size());
-        for(int i = 0; i< feedbackList.size(); i++){
-            System.out.println(feedbackList.get(i));
-
-        }
         eventNameTv.setText(eventname+"'s feedback: ");
         Lw.setAdapter(stringArrayAdapter);
-
-
 
     }
 }

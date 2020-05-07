@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Check if an user is logged in, otherwise load login activity
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() == null){
             loadActivity("LOGIN");
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
 
+        //Getting current user's data
         databaseReference.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 if (user != null) {
                     welcometext.setText("Welcome "+ user.getUsername()+"!");
 
+                    //Depending on userType, hiding different buttons and texts, admins can see everything
                     if (user.getAccountType() == 1){
                         startEventButton.setVisibility(View.GONE);
                         createEventButton.setVisibility(View.GONE);
@@ -83,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Setting up navigation view
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Open, R.string.Close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
@@ -102,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        //Onclicklistener for all the buttons, they all load different activities
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-
         listEventsButton.setOnClickListener(clickListener);
         startEventButton.setOnClickListener(clickListener);
         createEventButton.setOnClickListener(clickListener);
@@ -126,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         pastEventsButton.setOnClickListener(clickListener);
     }
 
+    //Loading different activities
     public void loadActivity(String s){
         switch (s) {
             case "PROFILE": {

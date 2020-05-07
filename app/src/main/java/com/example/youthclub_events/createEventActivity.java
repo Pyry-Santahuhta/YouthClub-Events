@@ -49,7 +49,10 @@ public class createEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Getting context for XML writing
         context = getApplicationContext();
+
         setContentView(R.layout.activity_create_event);
         createEventButton = findViewById(R.id.createbutton);
         eventNameID = findViewById(R.id.eventNameText);
@@ -66,6 +69,8 @@ public class createEventActivity extends AppCompatActivity {
                 eventDateAndTime = dateAndTimeID.getText().toString();
                 int checkedRadioID = ageGroupID.getCheckedRadioButtonId();
                 eventDescription = eventDescriptionID.getText().toString();
+
+                // Checking all of the event data to be set
                 if (checkedRadioID == -1){
                     Toast.makeText(createEventActivity.this, "Please select an age group", Toast.LENGTH_SHORT).show();
                     ageGroupID.requestFocus();
@@ -77,7 +82,6 @@ public class createEventActivity extends AppCompatActivity {
                     ageGroup = ageGroupButton.getText().toString();
                     ageGroupNum = checkedRadioID;
                 }
-
                 if(eventName.isEmpty()){
                     eventNameID.setError("Please enter a name for the event");
                     eventNameID.requestFocus();

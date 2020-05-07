@@ -41,15 +41,15 @@ public class eventListActivity extends AppCompatActivity {
 
         this.context = getApplicationContext();
 
+        //Getting user and data from firebase
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
-        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user = dataSnapshot.getValue(User.class);
-                /* Waiting for the user info before opening the  */
+                /* Waiting for the user info before opening the recyclerview */
                 recyclerAdapter = new ListEventsAdapter(eventsList, context, user);
                 eventsRecyclerView.setAdapter(recyclerAdapter);
             }
@@ -62,6 +62,7 @@ public class eventListActivity extends AppCompatActivity {
         eventsRecyclerView.setHasFixedSize(true);
         eventsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //Long click listener for viewing full event info
         eventsRecyclerView.addOnItemTouchListener(new recyclerViewOnClickListener(context, eventsRecyclerView, new recyclerViewOnClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {

@@ -44,6 +44,8 @@ class ListEventsAdapter extends RecyclerView.Adapter<ListEventsAdapter.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull ListEventsAdapter.ViewHolder holder, final int position) {
+
+        //Depending on userType, hiding different buttons and texts, admins can see everything
         if (user.getAccountType() == 1){
             holder.editButton.setVisibility(View.GONE);
         }else {

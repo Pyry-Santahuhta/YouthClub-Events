@@ -32,6 +32,8 @@ public class editEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.context = getApplicationContext();
         eventsList = new ArrayList<>();
+
+        //Getting the selected position for the correct event
         selectedPosition = getIntent().getIntExtra("selectedPosition", 0);
         eventsList = readAndWriteXML.readXML(context);
 
@@ -46,6 +48,7 @@ public class editEventActivity extends AppCompatActivity {
 
         event Event = eventsList.get(selectedPosition);
 
+        //Setting the old values to be edited
         ageGroupID.check(Event.ageRangeID);
         eventNameID.setText(Event.name);
         eventLocationID.setText(Event.location);
@@ -61,6 +64,8 @@ public class editEventActivity extends AppCompatActivity {
                 eventDateAndTime = dateAndTimeID.getText().toString();
                 int checkedRadioID = ageGroupID.getCheckedRadioButtonId();
                 eventDescription = eventDescriptionID.getText().toString();
+
+                //Checking all of the event data to be set
                 if (checkedRadioID == -1){
                     Toast.makeText(editEventActivity.this, "Please select an age group", Toast.LENGTH_SHORT).show();
                     ageGroupID.requestFocus();

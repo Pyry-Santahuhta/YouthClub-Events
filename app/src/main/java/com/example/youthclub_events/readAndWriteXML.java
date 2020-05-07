@@ -23,6 +23,14 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 public class readAndWriteXML {
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//        All of the data from events, events that are in progress, events that have ended and their feedback's are saved to XML.
+//        This class provides all of the reading, writing, editing and deleting for our XML files.
+//        Every time an XML file is being written on or edited, we check that the file exists and if(!file.exists()) We create it with a serializer and set the root element.
+//        Writing happens by firs parsing the file into a document, then getting the root and editing and creating new children to the root, the transformer turns our strings into XMl objects.
+//        XML reading returns simple arrayLists of the wanted items.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     public static void saveEventToXML(event Event, Context context) {
         File file = context.getFileStreamPath("eventdata.xml");

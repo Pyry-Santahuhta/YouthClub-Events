@@ -38,6 +38,7 @@ public class startEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 selectedPosition = eventSpinner.getSelectedItemPosition();
+                //Creating a new event in progress from the event data
                 eventInProgress EventInProgress = new eventInProgress(eventsList.get(selectedPosition).name,
                         eventsList.get(selectedPosition).location,
                         eventsList.get(selectedPosition).ageRange,
@@ -46,6 +47,7 @@ public class startEventActivity extends AppCompatActivity {
                         0, true);
 
                 readAndWriteXML.saveInProgressEventToXML(EventInProgress, context);
+                //Deleting the event from the upcoming events list
                 readAndWriteXML.deleteEvent(context, selectedPosition);
                 Intent intent = new Intent(startEventActivity.this, eventsInProgressActivity.class);
                 startActivity(intent);

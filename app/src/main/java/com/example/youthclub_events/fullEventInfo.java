@@ -25,6 +25,8 @@ public class fullEventInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.context = getApplicationContext();
         eventsList = new ArrayList<>();
+
+        //Get right index from the recycler position
         selectedPosition = getIntent().getIntExtra("selectedPosition", 0);
         eventsList = readAndWriteXML.readXML(context);
 

@@ -28,6 +28,7 @@ public class EditProfileDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
+        //Building the dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.profile_edit_dialog, null);
@@ -43,6 +44,8 @@ public class EditProfileDialog extends AppCompatDialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 String username = usernameET.getText().toString();
                 int accountType = accountTypeSpinner.getSelectedItemPosition();
+
+                //Secure an admin account can't be made
                 if(accountType != 0){
                     listener.applyTexts(username,  accountType);
                 }else {
@@ -51,6 +54,7 @@ public class EditProfileDialog extends AppCompatDialogFragment {
             }
         });
 
+        //Add the different account types
         accountTypeList = new ArrayList<>();
         accountTypeList.add("Select an account type");
         accountTypeList.add("Attendee"); // 1
@@ -70,12 +74,14 @@ public class EditProfileDialog extends AppCompatDialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
+
             listener = (EditProfileDialogListener) context;
         }catch (ClassCastException e){
             throw new ClassCastException(context.toString() + "Must implement editprofiledialoglistener");
         }
     }
 
+    //This is for overriding to get the username and accountType out of the dialog
     public interface EditProfileDialogListener{
         void applyTexts(String username,  int accountType);
     }

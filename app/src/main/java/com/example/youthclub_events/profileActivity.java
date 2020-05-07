@@ -49,6 +49,7 @@ public class profileActivity extends AppCompatActivity implements EditProfileDia
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference(Objects.requireNonNull(firebaseAuth.getUid()));
 
+        //Getting data from firebase and setting it to the texts
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -81,6 +82,7 @@ public class profileActivity extends AppCompatActivity implements EditProfileDia
     }
 
     public void openDialog(){
+        //Opening dialog window
         EditProfileDialog editProfileDialog = new EditProfileDialog();
         editProfileDialog.show(getSupportFragmentManager(), "Edit dialog");
 
@@ -94,7 +96,7 @@ public class profileActivity extends AppCompatActivity implements EditProfileDia
         finish();
     }
 
-
+    //Overriding the applytexts from EditProfileDialog to get access to the values granted by it, then setting them straight into firebase's database
     @Override
     public void applyTexts(String username, int accountType) {
         databaseReference.child("username").setValue(username);

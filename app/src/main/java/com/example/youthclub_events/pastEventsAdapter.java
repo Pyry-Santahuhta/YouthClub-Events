@@ -47,12 +47,13 @@ class pastEventsAdapter extends RecyclerView.Adapter<pastEventsAdapter.ViewHolde
     public void onBindViewHolder(@NonNull final pastEventsAdapter.ViewHolder holder, final int position) {
         final String name;
         eventInProgress currentEvent = eventsInProgressList.get(position);
+        //Hide ongoing events, only showing past ones
         if (currentEvent.ongoing){
             holder.itemView.setVisibility(View.GONE);
             ViewGroup.LayoutParams layoutParameter = holder.itemView.getLayoutParams();
             layoutParameter.height = 0;
         }else{
-
+            //Setting the items data on the texts
             holder.nameView.setText(currentEvent.name);
             holder.locationView.setText(currentEvent.location);
             holder.attendantView.setText(("Participants: "+String.valueOf(currentEvent.attendeeCount)));
